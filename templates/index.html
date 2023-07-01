@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>BANGALORE House</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f2f2f2;
+        }
+        
+        .container {
+            margin-top: 50px;
+        }
+        
+        .card-header {
+            background-color: rgba(0, 0, 0, 0.5);
+            color: #fff;
+        }
+        
+        .card-body {
+            background-color: rgba(255, 255, 255, 0.8);
+        }
+        
+        .form-check-label {
+            margin-right: 15px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="card">
+                <div class="card-header text-center">
+                    <h1>BANGALORE HOUSE PRICE PREDICTION</h1>
+                </div>
+                <div class="card-body">
+                    <form action="{{ url_for('predict') }}" method="POST">
+                        <div class="row">
+                            <div class="col-md-6 form-group">
+                                <label for="uiLocation">LOCATION</label>
+                                <select class="form-control" name="sLocation" id="uiLocation" required>
+                                    {% for location in locations %}
+                                    <option value="{{ location }}">{{ location }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="col-md-6 form-group">
+                                <label for="uiBHK">BHK</label>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="uiBHK" id="uiBHK1" value="1">
+                                    <label class="form-check-label" for="uiBHK1">1</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="uiBHK" id="uiBHK2" value="2">
+                                    <label class="form-check-label" for="uiBHK2">2</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="uiBHK" id="uiBHK3" value="3">
+                                    <label class="form-check-label" for="uiBHK3">3</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="uiBHK" id="uiBHK4" value="4">
+                                    <label class="form-check-label" for="uiBHK4">4</label>
+                                </div>
+                            </div>
+                            <div class="col-md-6 form-group">
+                                <label for="uiSqft">AREA</label>
+                                <input type="number" class="form-control" id="uiSqft" name="Squareft" placeholder="Enter Area (sqft)" min="1000" max="50000">
+                            </div>
+                            <div class="col-md-6 form-group">
+                                <label for="uiBathrooms">BATHROOMS</label>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="uiBathrooms" id="uiBathrooms1" value="1">
+                                    <label class="form-check-label" for="uiBathrooms1">1</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="uiBathrooms" id="uiBathrooms2" value="2">
+                                    <label class="form-check-label" for="uiBathrooms2">2</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="uiBathrooms" id="uiBathrooms3" value="3">
+                                    <label class="form-check-label" for="uiBathrooms3">3</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="uiBathrooms" id="uiBathrooms4" value="4">
+                                    <label class="form-check-label" for="uiBathrooms4">4</label>
+                                </div>
+                            </div>
+                            <br><br><br>
+                            <div class="col-md-12 form-group">
+                                <button class="btn btn-primary form-control">ESTIMATE PRICE</button>
+                            </div>
+                        </div>
+                    </form>
+                    <br>
+                    <div class="col-md-12 text-center">
+                        <h3><span>{{ result }}</span></h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
